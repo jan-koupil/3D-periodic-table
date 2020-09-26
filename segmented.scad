@@ -1,7 +1,7 @@
 use <MCAD/regular_shapes.scad>
 
-$fn = 150;
-
+//$fn = 150;
+$fn = 30;
 
 function hexType (i) = 
     (
@@ -87,15 +87,18 @@ translate([0, 0, -BaseH + BaseYCurvature])
         translate([R - BaseYCurvature, 0, 0])
             circle(r = BaseYCurvature);
 
-//segment(r, h, R, T, W, I, O, M, type = "grid");
+// segment(r, h, R, T, W, I, O, M, type = "grid");
 
 
 module segment(r, h, R, T, W, I, O, M, type) {
 
-    difference() {
+    realR = ( type == "grid" || type == "filled") ? R + O : R;
+    realT = ( type == "grid" || type == "filled") ? T + O : T;
 
-        realR = ( type == "grid" || type == "filled") ? R + O : R;
-        realT = ( type == "grid" || type == "filled") ? T + O : T;
+    //hex(r = r + W / 2, h = h, R = realR);
+    //hex(r = r + W / 2, h = h, R = realR, type="special");
+
+    difference() {
 
         intersection() {
             color("lime", 1)
@@ -107,7 +110,7 @@ module segment(r, h, R, T, W, I, O, M, type) {
                     }
 
             color("orange", 1)
-                hex(r = r + W / 2, h = h, R = realR);
+                hex(r = r + W / 2, h = h, R = realR, type="special");
         }
 
         if (type == "grid") {
@@ -121,13 +124,18 @@ module segment(r, h, R, T, W, I, O, M, type) {
 
 }
 
-module hex(r, h, R) {
-    // rotate([0, 0, i * dPhi])
-        // translate([0,-R, i * dz])
-        translate([0,-R, 0])
-            rotate([0, alpha, 0])
-                translate ([0, h, 0])
-                    rotate([90,90,0])
+module hex(r, h, R, type = "regular") {
+    translate([0,-R-h, 0])
+        rotate([0, alpha, 0])
+            translate ([0, h, 0])
+                rotate([-90,90,0])
+                    if (type == "regular") {
                         hexagon_prism(h, r);
+                    }
+                    else if (type == "special") {   // pyramidal type                          
+                        linear_extrude(height = h, center = false, convexity = 10, scale=[1, 1-h/R], slices=10)
+                            hexagon(r); 
+                    }
+
 }
 
