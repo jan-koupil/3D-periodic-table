@@ -1,5 +1,5 @@
 function exists( i) {
-    if ((i < 0) || (i > 160)) return false;
+    if ((i < 0) || (i > 161)) return false;
     if (i > 0 && i < 17) return false;
     if (i > 19 && i < 30) return false;
     if (i > 37 && i < 48) return false;
