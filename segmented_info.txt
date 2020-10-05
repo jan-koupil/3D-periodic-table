@@ -1,4 +1,0 @@
-ECHO: "Grid diameter =", 100 
-ECHO: "Grid height =", 174.885 
-ECHO: "Hex r =", 10.3519 
-ECHO: "Hex a =", 17.93
