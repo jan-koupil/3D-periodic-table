@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scad element vector (list) maker</title>
+</head>
+<body><code>
+    <script>
+        function mapElement(element){
+            const obj = new Map();
+            obj.set("number", element.number);
+            obj.set("symbol", element.symbol);
+            obj.set("atomicMass", Math.round(element.atomic_mass * 1000) / 1000);
+            return obj;
+        }
+
+        function makeVector(map) {
+            let vector = "";
+            vector += "[";
+            vector += map.map(elm => `[${elm.get("number")}, "${elm.get("symbol")}", ${elm.get("atomicMass")}]`).join(",");
+            vector += "]";
+            return vector;
+        }
+
+        fetch("table.json")
+        .then(response => response.json())
+        .then(json => json.elements.map(mapElement))
+        .then(elementMap => document.write(makeVector(elementMap)));
+    </script>
+    </code>
+</body>
+</html>
