@@ -1,7 +1,7 @@
 use <MCAD/regular_shapes.scad>
 
-//$fn = 150;
-$fn = 30;
+$fn = 150;
+//$fn = 30;
 
 function hexType (i) = 
     (
@@ -13,7 +13,8 @@ function hexType (i) =
     ( 
         (i > 125 && i < 129)
         || (i > 143 && i < 147)
-    ) ? "filled" :
+//    ) ? "filled" :
+    ) ? "solid" :
     ( i > 161 ) ? "solid" :
     "grid";
 
@@ -30,7 +31,7 @@ M = 1.5; // grid hex rim
 O = 0.7; // grid hex outset
 
 BaseH = 10;
-BaseYCurvature = 3;
+BaseYCurvature = 4;
 
 
 epsilon = 0.005;
