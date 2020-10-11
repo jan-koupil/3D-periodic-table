@@ -22,10 +22,10 @@ module element(Z) {
             linear_extrude(height = fontHeight)
                 text(text = str(elm[1]), font = font(fontFamily, fonts[1][1], fonts[1][2]), size = fonts[1][0], halign = "center", valign = "center");
 
-    color("red")
-        translate([fonts[2][3] * baseWidth / 100, fonts[2][4] * baseWidth / 100, 0])
-            linear_extrude(height = fontHeight)
-                text(text = str(elm[2]), font = font(fontFamily, fonts[2][1], fonts[2][2]), size = fonts[2][0], halign = "center", valign = "center");
+    // color("red")
+    //     translate([fonts[2][3] * baseWidth / 100, fonts[2][4] * baseWidth / 100, 0])
+    //         linear_extrude(height = fontHeight)
+    //             text(text = str(elm[2]), font = font(fontFamily, fonts[2][1], fonts[2][2]), size = fonts[2][0], halign = "center", valign = "center");
 
 }
 
