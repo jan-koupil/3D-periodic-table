@@ -10,17 +10,17 @@ baseHeight = 2;
 fontFamily = "Ebrima";
 fontHeight =  1.2; //layers of text above base plate
 
-
-fonts = [
-    //  size,   bold,   italic, x-shift, y-shift(%)
-    [   3,    true,   false,  0,      28      ], // atomic number
-    [   6,    true,   false,  0,      -12       ], // symbol
-//    [   2.7,    true,   false,  0,      -26      ], // mass
-];
-
+/* for common elements */ 
 // fonts = [
 //     //  size,   bold,   italic, x-shift, y-shift(%)
-//     [   2.7,    false,   false,  0,      33      ], // atomic number
-//     [   5.5,    true,   false,  0,      0       ], // symbol
-//     [   2.7,    false,   false,  0,      -33      ], // mass
+//     [   3,    true,   false,  0,      28      ], // atomic number
+//     [   6,    true,   false,  0,      -12       ], // symbol
+// //     [   2.7,    false,   false,  0,      -33      ], // mass
 // ];
+
+/* for La-Lu, Ac-Lr placeholders */
+fonts = [
+    //  size,   bold,   italic, x-shift, y-shift(%)
+    [   5,    true,   false,  0,      20      ], // atomic number
+    [   4,    true,   false,  0,      -6       ], // symbol
+];

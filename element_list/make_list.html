@@ -16,11 +16,9 @@
         }
 
         function makeVector(map) {
-            let vector = "";
-            vector += "[";
-            vector += map.map(elm => `[${elm.get("number")}, "${elm.get("symbol")}", ${elm.get("atomicMass")}]`).join(",");
-            vector += "]";
-            return vector;
+            return map  .filter(elm => elm.get("number") < 119)
+                        .map(elm => `[${elm.get("number")}, "${elm.get("symbol")}", ${elm.get("atomicMass")}]`)
+                        .join(",");
         }
 
         fetch("table.json")

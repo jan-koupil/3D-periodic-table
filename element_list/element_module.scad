@@ -12,20 +12,12 @@ module element(Z) {
         translate([0,0,-baseHeight])
             hexagon_prism(baseHeight, baseWidth * tan(30));
 
-    color("red")
-        translate([fonts[0][3] * baseWidth / 100, fonts[0][4] * baseWidth / 100, 0])
+    for (i = [0 : len(fonts) - 1]) {
+        color("red")
+        translate([fonts[i][3] * baseWidth / 100, fonts[i][4] * baseWidth / 100, 0])
             linear_extrude(height = fontHeight)
-                text(text = str(elm[0]), font = font(fontFamily, fonts[0][1], fonts[0][2]), size = fonts[0][0], halign = "center", valign = "center");
-
-    color("red")
-        translate([fonts[1][3] * baseWidth / 100, fonts[1][4] * baseWidth / 100, 0])
-            linear_extrude(height = fontHeight)
-                text(text = str(elm[1]), font = font(fontFamily, fonts[1][1], fonts[1][2]), size = fonts[1][0], halign = "center", valign = "center");
-
-    // color("red")
-    //     translate([fonts[2][3] * baseWidth / 100, fonts[2][4] * baseWidth / 100, 0])
-    //         linear_extrude(height = fontHeight)
-    //             text(text = str(elm[2]), font = font(fontFamily, fonts[2][1], fonts[2][2]), size = fonts[2][0], halign = "center", valign = "center");
+                text(text = str(elm[i]), font = font(fontFamily, fonts[i][1], fonts[i][2]), size = fonts[i][0], halign = "center", valign = "center");
+    }
 
 }
 
