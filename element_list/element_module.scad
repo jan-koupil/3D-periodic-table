@@ -1,16 +1,21 @@
 // A module file, not to be used separately, use element_demo.scad od make_element.cmd
 
 use <MCAD/regular_shapes.scad>
-include <config.scad>;
+include <element_config.scad>;
 include <elements.scad>;
 
 module element(Z) {
     No = Z - 1;
     elm = elementList[No];
     color("blue")
-    rotate([0,0,90])
-        translate([0,0,-baseHeight])
-            hexagon_prism(baseHeight, baseWidth * tan(30));
+    if (type == "hex") {
+        rotate([0,0,90])
+            translate([0,0,-baseHeight])
+                hexagon_prism(baseHeight, baseWidth * tan(30));
+    } else {
+        translate([0,0,-baseHeight / 2])
+            cube([baseWidth, baseWidth, baseHeight], center = true);
+    }
 
     for (i = [0 : len(fonts) - 1]) {
         color("red")
