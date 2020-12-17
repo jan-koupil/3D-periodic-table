@@ -17,10 +17,13 @@ h=8;
 /* CONFIGURATION */
 
 N = 18; // number of hexes in period
-D = 100; // diameter
-T = 4; // grid thickness
-W = 3; // grid width
+D = 75; // diameter
+T = 2.5; // grid thickness
+W = 2.5; // grid width
 epsilon = 0.005;
+top = 6;
+bottom = 6;
+baseThick = 3;
 
 /* CONFIG END */
 
@@ -43,15 +46,19 @@ H = -161 * dz + 2 * r;
 
 echo ("Grid diameter =", D);
 echo ("Grid height =", H);
+echo ("Full height =", H + top + bottom);
 echo ("Hex r =", r);
 echo ("Hex a =", a);
 
-difference() {
-    cylinder(r1 = R, r2 = R, h = H);
-    translate([0, 0, -epsilon])
-        cylinder(r1 = R - T, r2 = R - T, h = H + 2 * epsilon);
+translate([0, 0, -baseThick + epsilon])
+    cylinder(r1 = R, r2 = R, h = baseThick);
 
-    translate([0, 0, H - r]) {
+difference() {
+    cylinder(r1 = R, r2 = R, h = H + top +bottom);
+    translate([0, 0, -epsilon])
+        cylinder(r1 = R - T, r2 = R - T, h = H + top + bottom + 2 * epsilon);
+
+    translate([0, 0, H + top - r]) {
         for (i = [0:161]){
             if (exists(i))
                 hex(r=r - W / 2, h=h, R = R, i = i);
